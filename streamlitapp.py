@@ -45,7 +45,7 @@ if st.button("Show Pie Chart"):                 # this is called in Streamlit as
 
 # Create buttons for each Subsystem
 for subsystem in total_costs.index:
-    if st.button(subsystem):
+    if st.button(subsystem, key=subsystem):
         if st.session_state.get(subsystem):
             st.session_state[subsystem] = False     
         else:
