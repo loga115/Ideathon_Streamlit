@@ -35,6 +35,8 @@ st.pyplot(fig)
 # Create buttons for each Subsystem
 for subsystem in total_costs.index:
     if st.button(subsystem):
-        # Perform some action when the button is clicked
-        # You can add your code here
-        st.write(data[data['Subsystem'] == subsystem].drop('Subsystem', axis=1))
+        if st.session_state.get(subsystem):
+            st.session_state[subsystem] = False
+        else:
+            st.session_state[subsystem] = True
+        st.write(data[data['Subsystem'] == subsystem].drop('Subsystem', axis=1) if st.session_state[subsystem] else None)
