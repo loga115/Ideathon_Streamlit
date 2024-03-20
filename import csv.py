@@ -1,5 +1,4 @@
 import csv
-import csv
 
 data = [
     ["Number", "Component Type", "Component Model", "Quantity", "Price", "Notes"],
