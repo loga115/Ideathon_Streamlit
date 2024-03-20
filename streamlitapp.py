@@ -40,38 +40,6 @@ if st.button("Show Pie Chart"):                 # this is called in Streamlit as
         st.pyplot(fig)
     else:
         st.empty()
-
-def write_to_xlsx(data):
-    wb = Workbook()
-    sheet = wb.active
-    sheet.append(data)
-    wb.save('data_set.xlsx')
-
-def newrow():
-    
-    st.title("Add New Row")
-    line_no = len(data) + 1
-    pageno = 1
-    subsystem = st.selectbox("Subsystem", data['Subsystem'].unique())
-    area_of_commodity = st.text_input("Area of Commodity")
-    assm_part = st.text_input("Assm / Part #")
-    assembly_component = st.text_input("Assembly Component")
-    description = st.text_input("Description")
-    unit_cost = st.number_input("Unit Cost")
-    qty = st.number_input("QTY")
-    material_cost = st.number_input("Material Cost")
-    process_cost = st.number_input("Process Cost")
-    fastener_cost = st.number_input("Fastener Cost")
-    tooling_cost = st.number_input("Tooling Cost")
-    total_cost = st.number_input("Total Cost")
-    details = st.text_area("Details")
-
-    if st.button("Submit"):
-        new_row = [line_no, area_of_commodity, assm_part, assembly_component, description, unit_cost, qty, material_cost, process_cost, fastener_cost, tooling_cost, total_cost, details, pageno, subsystem]
-        data.loc[len(data)] = new_row
-        write_to_xlsx(data)
-        st.success("Data written to data_set.xlsx")
-    
     
 
 
@@ -87,5 +55,3 @@ for subsystem in total_costs.index:
         else:
             st.empty()
 
-
-newrow()
