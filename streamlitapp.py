@@ -31,8 +31,8 @@ def hover(event):
 fig.canvas.mpl_connect('motion_notify_event', hover)
 
 # Display the plot using st.pyplot()
-if st.button("Show Pie Chart"):
-    if st.session_state.get("show_chart"):
+if st.button("Show Pie Chart"):                 # this is called in Streamlit as a "session state" hack, to preserve the state of buttons and make them act as toggles
+    if st.session_state.get("show_chart"):      # and not one-offs
         st.session_state["show_chart"] = False
     else:
         st.session_state["show_chart"] = True
@@ -72,8 +72,7 @@ def newrow():
         write_to_xlsx(data)
         st.success("Data written to data_set.xlsx")
     
-if st.button("Add New Row"):
-    newrow()
+    
 
 
 # Create buttons for each Subsystem
@@ -83,4 +82,10 @@ for subsystem in total_costs.index:
             st.session_state[subsystem] = False     
         else:
             st.session_state[subsystem] = True
-        st.write(data[data['Subsystem'] == subsystem].drop('Subsystem', axis=1) if st.session_state[subsystem] else None)
+        if st.session_state[subsystem]:
+            st.write(data[data['Subsystem'] == subsystem].drop('Subsystem', axis=1))
+        else:
+            st.empty()
+
+
+newrow()
