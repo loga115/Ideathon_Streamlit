@@ -32,6 +32,22 @@ fig.canvas.mpl_connect('motion_notify_event', hover)
 # Display the plot using st.pyplot()
 st.pyplot(fig)
 
+df = pd.read_csv("BOOKINGS.csv")
+
+with st.form(key = "Contact Form",clear_on_submit=True):
+            
+    fullName = st.text_input(label = 'Full Name',placeholder="Please enter your full name")
+    
+    email = st.text_input(label = 'Email Address',placeholder="Please enter your email address")
+
+    submit_res = st.form_submit_button(label = "Submit")
+        
+    if submit_res == True:
+        new_data = {"fullName" : fullName,"email" : email}
+        df = df.append(new_data,ignore_index=True)
+        df.to_csv("BOOKINGS.csv",index=False)
+
+
 # Create buttons for each Subsystem
 for subsystem in total_costs.index:
     if st.button(subsystem):
