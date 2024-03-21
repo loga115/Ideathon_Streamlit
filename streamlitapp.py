@@ -10,6 +10,7 @@ mod_path = (Path(__file__).parent).resolve()
 
 data = pd.read_excel(mod_path / 'data_set.xlsx')
 total_costs = data.groupby('Subsystem')['Total Cost'].sum()
+print(total_costs)
 
 # Create a pie chart
 fig, ax = plt.subplots()
@@ -29,7 +30,7 @@ fig.canvas.mpl_connect('motion_notify_event', hover)
 
 # Display the plot using st.pyplot()
 if st.button("Show Pie Chart"):                 # this is called in Streamlit as a "session state" hack, to preserve the state of buttons and make them act as toggles
-    if st.session_state.get("show_chart"):      # and not one-offs
+    if st.session_state.get("show_chart"):      # and not one-offs  
         st.session_state["show_chart"] = False
     else:
         st.session_state["show_chart"] = True
