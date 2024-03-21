@@ -53,5 +53,5 @@ for subsystem in total_costs.index:
         if st.session_state[subsystem]:
             st.write(data[data['Subsystem'] == subsystem])
         else:
-            st.empty()
+            pass
 

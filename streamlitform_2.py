@@ -5,7 +5,7 @@ from openpyxl import load_workbook
 
 def write_to_xlsx(data):
     try:
-        wb = load_workbook('data_set_2.xlsx')
+        wb = load_workbook('data_set.xlsx')
         sheet = wb.active
     except FileNotFoundError:
         wb = Workbook()
@@ -13,14 +13,14 @@ def write_to_xlsx(data):
         sheet.append(["Line Num.", "Area of Commodity", "Assm / Part #", "Assembly Component", "Description", "Unit Cost", "QTY", "Material Cost", "Process Cost", "Fastener Cost", "Tooling Cost", "Total Cost", "Details", "Page #", "Subsystem"])
 
     sheet.append(data)
-    wb.save('data_set_2.xlsx')
+    wb.save('data_set.xlsx')
 
 def main():
     #Line Num.	Area of Commodity	Assm / Part #	Assembly Component	Description	Unit Cost	QTY	Material Cost	Process Cost	Fastener Cost	Tooling Cost	Total Cost	Details	Page #	Subsystem
 
     st.title("Streamlit Form")
     # Load the data from data_set.xlsx
-    data = pd.read_excel('data_set_2.xlsx')
+    data = pd.read_excel('data_set.xlsx')
 
     # Get the current number of records
     line_no = len(data) + 1
