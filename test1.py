@@ -141,9 +141,9 @@ def inputform():
 
 def main():
     st.title("Login/Register")
-    
+    global userDetails
     newDataframe = pd.DataFrame({"Username": "a", "Email": "email", "Password": "a"}, index = [0])
-    pd.concat([userDetails, newDataframe], ignore_index = True)
+    userDetails = pd.concat([userDetails, newDataframe], ignore_index = True)  # Assign the concatenated DataFrame back to userDetails
     l = login()
     if not l:
         st.warning("Please register before you continue")
@@ -155,7 +155,7 @@ def main():
             st.success("You have successfully registered. Please login to continue.")
             # global userDetails
             newDataframe = pd.DataFrame({"Username": uname, "Email": email, "Password": pword}, index = [0])
-            pd.concat([userDetails, newDataframe], ignore_index = True)
+            userDetails = pd.concat([userDetails, newDataframe], ignore_index = True)  # Assign the concatenated DataFrame back to userDetails
     
 
 
