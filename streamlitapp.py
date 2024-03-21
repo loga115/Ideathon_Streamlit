@@ -8,7 +8,7 @@ cdir = Path.cwd().resolve()
 
 mod_path = (Path(__file__).parent).resolve()
 
-data = pd.read_excel(mod_path / 'data_set.xlsx')
+data = pd.read_excel(mod_path / 'data_set_3.xlsx')
 total_costs = data.groupby('Subsystem')['Total Cost'].sum()
 print(total_costs)
 
@@ -29,8 +29,8 @@ def hover(event):
 fig.canvas.mpl_connect('motion_notify_event', hover)
 
 # Display the plot using st.pyplot()
-if st.button("Show Pie Chart"):                 # this is called in Streamlit as a "session state" hack, to preserve the state of buttons and make them act as toggles
-    if st.session_state.get("show_chart"):      # and not one-offs  
+if st.button("Show Pie Chart"):
+    if st.session_state.get("show_chart"):
         st.session_state["show_chart"] = False
     else:
         st.session_state["show_chart"] = True
@@ -38,8 +38,6 @@ if st.button("Show Pie Chart"):                 # this is called in Streamlit as
         st.pyplot(fig)
     else:
         st.empty()
-    
-
 
 # Create buttons for each Subsystem
 for subsystem in total_costs.index:
@@ -52,4 +50,3 @@ for subsystem in total_costs.index:
             st.write(data[data['Subsystem'] == subsystem])
         else:
             pass
-
